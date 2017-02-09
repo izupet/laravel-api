@@ -1,0 +1,77 @@
+<?php
+
+namespace DummyNamespace;
+
+use Izupet\Api\Requests\ApiRequest;
+
+class DummyClass extends ApiRequest
+{
+    /**
+     * Get the validation rules that apply to the GET request.
+     *
+     * @return array
+     */
+    public function getRules()
+    {
+        //
+    }
+
+    /**
+     * Get the validation rules that apply to the POST request.
+     *
+     * @return array
+     */
+    public function postRules()
+    {
+        //
+    }
+
+    /**
+     * Get the validation rules that apply to the PUT request.
+     *
+     * @return array
+     */
+    public function putRules()
+    {
+        //
+    }
+
+    /**
+     * Get the validation rules that apply to the DELETE request.
+     *
+     * @return array
+     */
+    public function deleteRules()
+    {
+        //
+    }
+
+    /**
+     * Modify input (request parameters) after validation.
+     *
+     * @return array $input
+     */
+    public function modify(array $input)
+    {
+        //
+
+        return $input;
+    }
+
+    /**
+     * Extend or replace build-in validator.
+     *
+     * @return void
+     */
+    public function customValidator($factory)
+    {
+        $factory->extend('customValidatorRuleName', function($attribute, $value, $parameters) {
+
+            //
+
+            return true;
+        }, 'Error message.');
+
+        //
+    }
+}

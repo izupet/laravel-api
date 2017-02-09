@@ -1,0 +1,19 @@
+
+{
+    "name": "izupet/laravel-api",
+    "description": "Laravel REST api helpers",
+    "version": "1.0.0",
+    "keywords": ["laravel", "api", "REST"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Igor Zupet",
+            "email": "izupet@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Izupet\\Api\\": "src/"
+        }
+    }
+}
