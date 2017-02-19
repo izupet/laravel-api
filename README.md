@@ -72,15 +72,15 @@ Example of respondCollection response:
 
 ```json
 {
-    meta: {
-        status: "success",
-        message: "Ok.",
-        code: 200,
-        total: 503,
-        limit: 10,
-        offset: 0
+    "meta": {
+        "status": "success",
+        "message": "Ok.",
+        "code": 200,
+        "total": 503,
+        "limit": 10,
+        "offset": 0
     },
-    data: []
+    "data": []
 }
 ```
 
@@ -88,12 +88,12 @@ Example of respondOne response:
 
 ```json
 {
-    meta: {
-        status: "success",
-        message: "Ok.",
-        code: 200
+    "meta": {
+        "status": "success",
+        "message": "Ok.",
+        "code": 200
     },
-    data: []
+    "data": []
 }
 ```
 
@@ -101,10 +101,10 @@ Example of respond error response:
 
 ```json
 {
-    meta: {
-        status: "error",
-        message: "Custom error message.",
-        code: 400
+    "meta": {
+        "status": "error",
+        "message": "Custom error message.",
+        "code": 400
     }
 }
 ```
@@ -126,7 +126,9 @@ public function getRules()
     return $this
         ->search(['model', 'brand'])
         ->pagination()
-        ->fields(['id', 'model', 'brand', 'type', 'createdAt', 'images' => ['path', 'id', 'position', 'createdAt']])
+        ->fields(['id', 'model', 'brand', 'type', 'createdAt', 'images' => [
+            'path', 'id', 'position', 'createdAt'
+        ]])
         ->order(['model', 'brand', 'id'])
         ->filter([
             'type'                => 'in:coupe,convertable,suv,sedan',
