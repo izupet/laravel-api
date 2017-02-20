@@ -1,4 +1,4 @@
-# laravel-api
+# laravel-api - [example repo](https://github.com/izupet/laravel-api-example)
 This is Laravel 5.* package for developing RESTful APIs very simple and efficient. It provides validation with Laravel build-in validator with possibility of extension and some helpful model methods. It is fully customizable. It is really amazing because you can define partial responses and decrease response data significantly. All other features like ordering, searching, filtering are also provided.  
 
 ## Prerequisite
