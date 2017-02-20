@@ -174,9 +174,89 @@ So rules for GET method are set, let's dig in.
 /cars?type=sedan&images.createdAt.gt=2017-01-01
 ```
 
+After validation you can access your validated request in controller. Let see how it looks request if we do dd($request->all());
 
+```php
+array:6 [▼
+  "fields" => array:2 [▶]
+  "order" => array:2 [▶]
+  "search" => array:2 [▶]
+  "pagination" => array:2 [▶]
+  "filter" => array:2 [▶]
+  "body" => array:1 [▶]
+]
+```
+All params are fine strucured and prepared to be used in services/repositories. For that purpose there are a couple of helpful methods that can be used in connection with Eloquent.
 
+Example of repository using this methods:
 
+```php
+class CarRepository
+{
+    public function __construct(
+        \App\Car $car
+    )
+    {
+        $this->car = $car;
+    }
+
+    public function all(array $input)
+    {
+        return $this->car->apiGet('fields', 'pagination', 'search', 'order', 'filter', 'relations', $input);
+    }
+
+    public function create(array $input)
+    {
+        return $this->car->apiCreate('fields', $input);
+    }
+
+    public function update(array $input, \App\Car $car)
+    {
+        return $car->apiUpdate('fields', 'relations', $input);
+    }
+
+    public function delete(\App\Car $car)
+    {
+        return $car->apiDelete();
+    }
+}
+```
+
+Calling 
+```php
+\App\Cars::apiGet('fields', 'pagination', 'search', 'order', 'filter', 'relations', $input)
+```
+
+is equal to
+```php
+    $cars = \App\Cars::apiFields($input['fields']['select'], true)
+        ->apiPagination($input['pagination'])
+        ->apiSearch($input['search'])
+        ->apiOrder($input['order'])
+        ->apiFilter($input['filter']['select']);
+    
+   $cars->apiRelations($cars, $input['fields']['relations'], $input['filter']['relations']);
+```
+Second parameter is for retrieving total number of records matching filter criteria.
+
+Helpers for create, update and delete:
+
+```php
+public function create(array $input)
+{
+    return $this->car->apiCreate('fields', $input);
+}
+
+public function update(array $input, \App\Car $car)
+{
+    return $car->apiUpdate('fields', 'relations', $input);
+}
+
+public function delete(\App\Car $car)
+{
+    return $car->apiDelete();
+}
+```
 
 
 
