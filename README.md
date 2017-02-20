@@ -118,7 +118,7 @@ The most powerful thing of this library are validation request classes as we cre
  - putRules() - set up rules for PUT method
  - deleteRules() - set up rules for DELETE method
 
-Example of getRules method filled with all awailable helper rules:
+Example of getRules method filled with all available helper rules:
 
 ```php
 public function getRules()
@@ -150,7 +150,7 @@ So rules for GET method are set, let's dig in.
 /cars?q=BMW
 ```
 
- - pagination - allowes endpoint to use limit and offset params (default values set in config)
+ - pagination - allows endpoint to use limit and offset params (default values set in config)
 
 ```url
 /cars?limit=20&offset=40
@@ -162,7 +162,18 @@ So rules for GET method are set, let's dig in.
 /cars?fields=id,model,images.path
 ```
 
-## more to come...
+ - order - fields that can be ordered by
+
+```url
+/cars?order=id.desc
+```
+
+ - filter - fields that can be filtered by. There you can use build-in validator or custom extensions. Underscores in names represents dots in URL. Sufixes (ne = not equal, gt = greather than, lt = lower than) are also important feature that perfects this API. You can also filter by relation fields. 
+
+```url
+/cars?type=sedan&images.createdAt.gt=2017-01-01
+```
+
 
 
 
