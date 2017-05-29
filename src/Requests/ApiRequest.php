@@ -368,14 +368,12 @@ class ApiRequest extends FormRequest
         $this->checkAllowedMethod(['get']);
 
         $input = $this->all();
-        if (!array_key_exists('order', $input)) {
-            $input['order'] = 'id.asc';
+        if (array_key_exists('order', $input)) {
+            $this->rules = array_merge($this->rules, [
+                'order' => 'order:' . serialize($order)
+            ]);
+            $this->replace($input);
         }
-        $this->replace($input);
-
-        $this->rules = array_merge($this->rules, [
-            'order' => 'order:' . serialize($order)
-        ]);
 
         return $this;
     }

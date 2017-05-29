@@ -91,7 +91,7 @@ class ApiModel extends Model
     {
         return $this->delete();
     }
-    
+
     public function apiRelations($query, array $relations, array $filter = [])
     {
         foreach ($relations as $relation => $fields) {
@@ -168,6 +168,10 @@ class ApiModel extends Model
                 throw new \Exception('Some arguments are not valid.');
             }
 
+            if ($value === 'order' && !isset($input['order'])) {
+                continue;
+            }
+
             switch ($value) {
                 case 'fields':
                     $query = $this->scopeApiFields($query, $input['fields']['select'], true);
@@ -194,9 +198,9 @@ class ApiModel extends Model
 
         $total = $this->total();
 
-        $limit = $input['pagination']['limit'];
+        $limit = (int) $input['pagination']['limit'];
 
-        $offset = $input['pagination']['offset'];
+        $offset = (int) $input['pagination']['offset'];
 
         if ($withRelations) {
             $this->apiRelations($collection, $input['fields']['relations'], $input['filter']['relations']);
