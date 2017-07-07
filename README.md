@@ -9,7 +9,7 @@ Laravel framework 5 and up
 ## Installation
 First you need to install this package using composer
 ```bash
-composer require izupet/api
+composer require izupet/laravel-api
 ```
 
 Add service provider in app.php file:
